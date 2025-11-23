@@ -1,7 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using PizzaLibrary1.Exeptions;
 using PizzaLibrary1.Interfaces;
 using PizzaLibrary1.Models;
 using PizzaLibrary1.Services;
+using System.ComponentModel;
+using System.Runtime.ConstrainedExecution;
 
 Console.WriteLine("Hello, World!");
 
@@ -10,7 +13,7 @@ CustomerRepository cRepo = new CustomerRepository();
 
 
 //Console.WriteLine("Test af AddCustomer:");
-//Customer c1 = new Customer("Marie", "56565656", "Allé 5");
+
 //cRepo.AddCustomer(c1);
 //Console.WriteLine("Antal kunder i kartotektet " + cRepo.Count);
 //Console.WriteLine("Antal kunder i kartotektet efter tilføjelse " + cRepo.Count);
@@ -49,6 +52,27 @@ CustomerRepository cRepo = new CustomerRepository();
 //VIPCustomer vip1 = new VIPCustomer("Oliver", "10101010", "Ringstedvej 42,Roskilde",6);
 //Console.WriteLine(vip1.ToString());
 //Console.WriteLine();
+
+Console.WriteLine("testing exception af CustomerMobileNumberExist:");
+Customer c1 = new Customer("Marie", "56565656", "Allé 5");
+cRepo.AddCustomer(c1);
+Customer c2 = new Customer("Sofus", "56565656", "Vej 51");
+try
+{
+    cRepo.AddCustomer(c2);
+}
+catch (CustomerMobileNumberExist cex)
+{
+    Console.WriteLine($"Fejlbesked: {cex.Message}");
+}
+try
+{
+    cRepo.RemoveCustomer("90909090");
+}
+catch (CustomerMobileNumberExist cex)
+{
+    Console.WriteLine($"Fejlbesked: {cex.Message}");
+}
 Console.WriteLine("Testing MenuItems:");
 
 MenuItemRepository mRepo = new MenuItemRepository();
@@ -56,7 +80,7 @@ MenuItemRepository mRepo = new MenuItemRepository();
 Console.WriteLine("Antal Menu items i kartotektet " + mRepo.Count);
 //Console.WriteLine();
 //Console.WriteLine("Test af AddMenuItem:");
-//mRepo.AddMenuItem(new MenuItem("Gorgonzola", 85, "Tomat, gorgonzola, løg & Svampe", MenuType.PIZZECLASSSICHE));
+mRepo.AddMenuItem(new MenuItem("Gorgonzola", 85, "Tomat, gorgonzola, løg & Svampe", MenuType.PIZZECLASSSICHE));
 //Console.WriteLine("Antal Menu items i kartotektet efter AddMenuItem" + mRepo.Count);
 //Console.WriteLine();
 //Console.WriteLine("Testing RemoveMenuItem:");
@@ -103,5 +127,22 @@ Console.WriteLine("Testing Beverage:");
 Beverage b1 = new Beverage("Bottle of Red Wine", 85, "This id red wine", MenuType.BEVERAGE,true);
 Console.WriteLine(b1.ToString());
 
+Console.WriteLine("Testing af MenuItemNumberExist:");
+MenuItem m1 = new MenuItem("Romana", 78, "tomat, ost, skinke, bacon, løg", MenuType.PIZZECLASSSICHE);
+try
+{
+    mRepo.AddMenuItem(m1);
+}
+catch(MenuItemNumberExist mex)
+{
+    Console.WriteLine($"Fejlbesked: {mex.Message}");
+}
 
-
+try
+{
+    mRepo.RemoveMenuItem(42);
+}
+catch (MenuItemNumberExist mex)
+{
+    Console.WriteLine($"Fejlbesked: {mex.Message}");
+}

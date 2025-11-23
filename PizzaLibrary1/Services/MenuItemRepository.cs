@@ -1,4 +1,5 @@
-﻿using PizzaLibrary1.Interfaces;
+﻿using PizzaLibrary1.Exeptions;
+using PizzaLibrary1.Interfaces;
 using PizzaLibrary1.Models;
 using System;
 using System.Collections.Generic;
@@ -15,17 +16,19 @@ namespace PizzaLibrary1.Services
         public int Count { get { return _menuItemList.Count; } }
 
         public MenuItemRepository()
-        {
+        { 
             _menuItemList = MockData.MenuItemData;
         }
 
-        public void AddMenuItem(MenuItem menuItem)
+        public void AddMenuItem(MenuItem menuItem) 
         {
-            if (GetMenuItemByNo(menuItem.No)==null)
+            if (GetMenuItemByNo(menuItem.No) != null)
             {
-                _menuItemList.Add(menuItem);
-            }            
+                throw new MenuItemNumberExist($"Der er allerede et menu item, som har nr.{menuItem.No} ");
+            }
+            _menuItemList.Add(menuItem);
         }
+
 
         public List<MenuItem> GetAll()
         {
@@ -37,7 +40,7 @@ namespace PizzaLibrary1.Services
             return returnMenu;
                         
         }
-
+        
         public MenuItem? GetMenuItemByNo(int no)
         {
             foreach(MenuItem item in _menuItemList)
@@ -60,10 +63,11 @@ namespace PizzaLibrary1.Services
 
         public void RemoveMenuItem(int no)
         {
-            if (GetMenuItemByNo(no)!=null)
+            if (GetMenuItemByNo(no)==null)
             {
-                _menuItemList.RemoveAt(no);
+                throw new MenuItemNumberExist("Dette menu item nummer er ikke i systemet, prøv et andet");
             }
+            _menuItemList.RemoveAt(no);
         }
 
         public List<MenuItem> GetAllItemsInGivenMenuType(MenuType menuType) 
@@ -138,8 +142,6 @@ namespace PizzaLibrary1.Services
                 Console.WriteLine(m.ToString());
             }
             return null;
-
-
         }
 
 

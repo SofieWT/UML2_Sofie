@@ -20,7 +20,7 @@ namespace PizzaLibrary1.Models
 
         public override string ToString()
         {
-            return $"Name: {ItemName}, price: {Price}kr., \n{Description}, Contains alcohol: {(Alcohol? "Yes" : "No")}";
+            return $"Name: {ItemName}, price: {Price}kr., menutype: {TheMenuType} \n{Description}, Contains alcohol: {(Alcohol? "Yes" : "No")}";
         }
     }
 }

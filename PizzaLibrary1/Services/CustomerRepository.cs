@@ -1,4 +1,5 @@
-﻿using PizzaLibrary1.Interfaces;
+﻿using PizzaLibrary1.Exeptions;
+using PizzaLibrary1.Interfaces;
 using PizzaLibrary1.Models;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,11 @@ namespace PizzaLibrary1.Services
 
         public void AddCustomer(Customer customer)
         {
-            if (!_customers.ContainsKey(customer.Mobile))
+            if (_customers.ContainsKey(customer.Mobile))
             {
-                _customers.Add(customer.Mobile, customer);
-            }            
+                throw new CustomerMobileNumberExist("Mobil nummeret er allerede i systemet..."); //Denne massage kommer, hvis nummeret allerede er i listen.
+            }
+            _customers.Add(customer.Mobile, customer);
         }
 
         public List<Customer> GetAll()
@@ -61,10 +63,11 @@ namespace PizzaLibrary1.Services
 
         public void RemoveCustomer(string mobile)
         {
-            if (_customers.ContainsKey(mobile))
+            if (!_customers.ContainsKey(mobile))
             {
-                _customers.Remove(mobile);
+                throw new CustomerMobileNumberExist($"Kunden med mobilnr {mobile} er ikke i listen...");
             }
+            _customers.Remove(mobile);
         }
         
         public List<Customer> GetAllClubMembers() 

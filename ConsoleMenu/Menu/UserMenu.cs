@@ -94,13 +94,14 @@ namespace ConsoleMenu.Menu
                         double bevPrice = double.Parse(bPrice);
                         Console.WriteLine("Indlæs description:");
                         string bevDescription = Console.ReadLine();
-                        Console.WriteLine("Indlæs om det indeholder alkohol true/false:");
+                        Console.WriteLine("Indlæs om det indeholder alkohol y/n:");
                         string alkohol = Console.ReadLine().ToLower();
-                        bool hasAlkohol = bool.Parse(alkohol);//Denne virker måske...
+                        bool hasAlkohol = (alkohol[0] == 'y')?true:false; //Denne virker måske...
                         Console.WriteLine("Indlæs menutypen 'BEVERAGE'");
                         string bevMenuType = Console.ReadLine();
                         MenuType theBevMenuType = Enum.Parse<MenuType>(bevMenuType);
                         AddBeverageController addBeverageController = new AddBeverageController(bevName, bevPrice, bevDescription,theBevMenuType, hasAlkohol, _menuItemRepository);
+                        addBeverageController.AddBeverage();
                         break;
                     default:
                         Console.WriteLine("Angiv et tal fra 1..6 eller q for afslut");
