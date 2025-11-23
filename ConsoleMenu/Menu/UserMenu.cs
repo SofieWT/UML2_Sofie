@@ -1,5 +1,6 @@
 ﻿using ConsoleMenu.Controllers.Customers;
 using ConsoleMenu.Controllers.MenuItems;
+using PizzaLibrary1.Exeptions;
 using PizzaLibrary1.Models;
 using PizzaLibrary1.Services;
 using System;
@@ -43,18 +44,25 @@ namespace ConsoleMenu.Menu
                         Console.ReadLine();
                         break;
                     case "3":
-                        Console.WriteLine("Valg 3");
-                        Console.WriteLine("Indlæs navn:");
-                        string name = Console.ReadLine();
-                        Console.WriteLine("Indlæs mobil nr:");
-                        string mobile = Console.ReadLine();
-                        Console.WriteLine("Indlæs adresse:");
-                        string address = Console.ReadLine();
-                        Console.WriteLine("Vil du være clubmember y/n");
-                        string clubMemberString = Console.ReadLine().ToLower();
-                        bool isClubMember = (clubMemberString[0] == 'y') ? true : false;
-                        AddCustomerController addCustomerController = new AddCustomerController(name, mobile, address, isClubMember, _customerRepository);
-                        addCustomerController.AddCustomer();
+                        try
+                        {
+                            Console.WriteLine("Valg 3");
+                            Console.WriteLine("Indlæs navn:");
+                            string name = Console.ReadLine();
+                            Console.WriteLine("Indlæs mobil nr:");
+                            string mobile = Console.ReadLine();
+                            Console.WriteLine("Indlæs adresse:");
+                            string address = Console.ReadLine();
+                            Console.WriteLine("Vil du være clubmember y/n");
+                            string clubMemberString = Console.ReadLine().ToLower();
+                            bool isClubMember = (clubMemberString[0] == 'y') ? true : false;
+                            AddCustomerController addCustomerController = new AddCustomerController(name, mobile, address, isClubMember, _customerRepository);
+                            addCustomerController.AddCustomer();
+                        }
+                        catch (CustomerMobileNumberExist cex)
+                        {
+                            Console.WriteLine($"Fejlbesked: {cex.Message}");
+                        }
                         break;
                     case "4":
                         Console.WriteLine("valg 4");
