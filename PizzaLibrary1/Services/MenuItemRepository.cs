@@ -24,11 +24,11 @@ namespace PizzaLibrary1.Services
         {
             if (GetMenuItemByNo(menuItem.No) != null)
             {
-                throw new MenuItemNumberExist($"Der er allerede et menu item, som har nr.{menuItem.No} ");
+                throw new MenuItemNumberExist($"Der er allerede et menu item, som har nr.{menuItem.No}, prøv igen med et andet nr.");
             }
             _menuItemList.Add(menuItem);
         }
-
+        
 
         public List<MenuItem> GetAll()
         {

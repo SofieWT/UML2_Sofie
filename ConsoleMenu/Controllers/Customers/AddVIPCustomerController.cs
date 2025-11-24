@@ -1,4 +1,5 @@
-﻿using PizzaLibrary1.Interfaces;
+﻿using PizzaLibrary1.Exeptions;
+using PizzaLibrary1.Interfaces;
 using PizzaLibrary1.Models;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,10 @@ namespace ConsoleMenu.Controllers.Customers
     {
 
         ICustomerRepository _customerRepository;
-        public VIPCustomer VIPCustomer { get; set; }
+        public VIPCustomer VIPCustomer 
+        { 
+            get; set; 
+        }
 
         public AddVIPCustomerController(string vipName, string vipMobile, string vipAddress, int theDiscount, ICustomerRepository customerRepository)
         {
@@ -22,6 +26,10 @@ namespace ConsoleMenu.Controllers.Customers
 
         public void AddVIPCustomer()
         {
+            if(VIPCustomer.Discount>25)
+            {
+                throw new TooHighDiscountException("The Discount is too high");
+            }
             _customerRepository.AddCustomer(VIPCustomer);
         }
     }

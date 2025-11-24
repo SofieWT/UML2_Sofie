@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PizzaLibrary1.Exeptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -9,10 +10,18 @@ namespace PizzaLibrary1.Models
 {
     public class VIPCustomer : Customer
     {
+        private int _discount;
         public int Discount 
         {
-            get;
-            set; 
+            get { return _discount; }
+            set
+            {
+                if (value>25)
+                {
+                    throw new TooHighDiscountException("The Discount is too high - VIPCustomer er ikke tilføjet...");
+                }
+                _discount = Discount;
+            }
         }
 
         public VIPCustomer(string name, string mobile, string address, int discount) : base(name, mobile, address)

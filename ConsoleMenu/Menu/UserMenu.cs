@@ -62,36 +62,59 @@ namespace ConsoleMenu.Menu
                         catch (CustomerMobileNumberExist cex)
                         {
                             Console.WriteLine($"Fejlbesked: {cex.Message}");
-                        }
+                            Console.ReadLine();
+                        } 
                         break;
                     case "4":
-                        Console.WriteLine("valg 4");
-                        Console.WriteLine("Indlæs navn:");
-                        string itemName = Console.ReadLine();
-                        Console.WriteLine("Indlæs pris:");
-                        string price = Console.ReadLine();
-                        double itemPrice = double.Parse(price);
-                        Console.WriteLine("Indlæs beskrivelse:");
-                        string description = Console.ReadLine();
-                        Console.WriteLine("Indlæs menu type:");
-                        string menuType = Console.ReadLine();
-                        MenuType theMenuType = Enum.Parse<MenuType>(menuType);//Med parse skal det skrives helt korrekt før at der ikke kommer fejlmeddelse. Programmet crasher hvis det er forkert. kan man lave en fejlmeddelse?
-                        AddPizzaController addPizzaController = new AddPizzaController(itemName, itemPrice, description, theMenuType, _menuItemRepository);
-                        addPizzaController.AddMenuItem();
+                        try
+                        {
+                            Console.WriteLine("valg 4");
+                            Console.WriteLine("Indlæs navn:");
+                            string itemName = Console.ReadLine();
+                            Console.WriteLine("Indlæs pris:");
+                            string price = Console.ReadLine();
+                            double itemPrice = double.Parse(price);
+                            Console.WriteLine("Indlæs beskrivelse:");
+                            string description = Console.ReadLine();
+                            Console.WriteLine("Indlæs menu type:");
+                            string menuType = Console.ReadLine();
+                            MenuType theMenuType = Enum.Parse<MenuType>(menuType);//Med parse skal det skrives helt korrekt før at der ikke kommer fejlmeddelse. Programmet crasher hvis det er forkert. kan man lave en fejlmeddelse?
+                            AddPizzaController addPizzaController = new AddPizzaController(itemName, itemPrice, description, theMenuType, _menuItemRepository);
+                            addPizzaController.AddMenuItem();
+                        }
+                        catch (MenuItemNumberExist mex)
+                        {
+                            Console.WriteLine($"Fejlbesked: {mex.Message}");
+                            Console.ReadLine();
+                        }
                         break;
                     case "5":
-                        Console.WriteLine("Valg 5");
-                        Console.WriteLine("Indlæs navn:");
-                        string vipName = Console.ReadLine();
-                        Console.WriteLine("Indlæs mobil:");
-                        string vipMobile = Console.ReadLine();
-                        Console.WriteLine("Indlæs addresse:");
-                        string vipAddresse = Console.ReadLine();
-                        Console.WriteLine("Indlæs mængde rabat");
-                        string discount = Console.ReadLine().ToLower();
-                        int theDiscount = int.Parse(discount);
-                        AddVIPCustomerController addVIPCustomerController = new AddVIPCustomerController(vipName, vipMobile, vipAddresse, theDiscount, _customerRepository);
-                        addVIPCustomerController.AddVIPCustomer();
+                        try
+                        {
+                            Console.WriteLine("Valg 5");
+                            Console.WriteLine("Indlæs navn:");
+                            string vipName = Console.ReadLine();
+                            Console.WriteLine("Indlæs mobil:");
+                            string vipMobile = Console.ReadLine();
+                            Console.WriteLine("Indlæs addresse:");
+                            string vipAddresse = Console.ReadLine();
+                            Console.WriteLine("Indlæs mængde rabat");
+                            string discount = Console.ReadLine().ToLower();
+                            int theDiscount = int.Parse(discount);
+                            AddVIPCustomerController addVIPCustomerController = new AddVIPCustomerController(vipName, vipMobile, vipAddresse, theDiscount, _customerRepository);
+                            addVIPCustomerController.AddVIPCustomer();
+                        }
+                        catch (CustomerMobileNumberExist cex)
+                        {
+                            Console.WriteLine($"Fejlbesked: {cex.Message}");
+                            Console.ReadLine();
+                        }
+                        catch(TooHighDiscountException tex)
+                        {
+                            Console.WriteLine($"Fejlbesked: {tex.Message}");
+                            Console.ReadLine();
+                        }
+
                         break;
                     case "6":
                         Console.WriteLine("valg 6");

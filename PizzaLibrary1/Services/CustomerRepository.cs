@@ -25,7 +25,7 @@ namespace PizzaLibrary1.Services
         {
             if (_customers.ContainsKey(customer.Mobile))
             {
-                throw new CustomerMobileNumberExist("Mobil nummeret er allerede i systemet..."); //Denne massage kommer, hvis nummeret allerede er i listen.
+                throw new CustomerMobileNumberExist("Mobil nummeret er allerede i systemet... Tilføj kunden igen med et andet mobilnr."); //Denne massage kommer, hvis nummeret allerede er i listen.
             }
             _customers.Add(customer.Mobile, customer);
         }
@@ -65,7 +65,7 @@ namespace PizzaLibrary1.Services
         {
             if (!_customers.ContainsKey(mobile))
             {
-                throw new CustomerMobileNumberExist($"Kunden med mobilnr {mobile} er ikke i listen...");
+                throw new CustomerMobileNumberExist($"Kunden med mobilnr {mobile} er ikke i listen... Prøv igen,");
             }
             _customers.Remove(mobile);
         }
