@@ -26,10 +26,6 @@ namespace ConsoleMenu.Controllers.Customers
 
         public void AddVIPCustomer()
         {
-            if(VIPCustomer.Discount>25)
-            {
-                throw new TooHighDiscountException("The Discount is too high");
-            }
             _customerRepository.AddCustomer(VIPCustomer);
         }
     }

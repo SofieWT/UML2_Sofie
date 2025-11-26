@@ -84,19 +84,6 @@ namespace PizzaLibrary1.Services
             return menuTypeList;
         }
 
-            //foreach (MenuItem menuItem in menuTypeList)
-            //{
-            //    if (menuItem.TheMenuType == menuType)
-            //    {
-            //        if (menuItem.Price > MostExpensive)
-            //        {
-            //            MostExpensive = menuItem.Price;
-            //        }
-
-            //    }
-            //}
-
-
         public MenuItem? MostExpensiveGivenMenuItem(MenuType menuType)
         {
             MenuItem mostExpensive=null;
@@ -143,8 +130,6 @@ namespace PizzaLibrary1.Services
             }
             return null;
         }
-
-
 
 
         public void PrintListe(List<MenuItem> List)

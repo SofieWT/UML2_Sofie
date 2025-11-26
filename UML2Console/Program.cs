@@ -124,7 +124,7 @@ mRepo.AddMenuItem(new("Pollo", 40, "Pesto, tomat, rucola salat, løg, Kylling", 
 
 Console.WriteLine("Testing Beverage:");
 
-Beverage b1 = new Beverage("Bottle of Red Wine", 85, "This id red wine", MenuType.BEVERAGE,true);
+Beverage b1 = new Beverage("Bottle of Red Wine", 85, "This id red wine", MenuType.BEVERAGE, true);
 Console.WriteLine(b1.ToString());
 
 Console.WriteLine("Testing af MenuItemNumberExist:");
@@ -146,3 +146,6 @@ catch (MenuItemNumberExist mex)
 {
     Console.WriteLine($"Fejlbesked: {mex.Message}");
 }
+
+
+
