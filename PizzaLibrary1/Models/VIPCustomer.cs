@@ -18,7 +18,7 @@ namespace PizzaLibrary1.Models
             {
                 if (value > 25 || value < 1)
                 {
-                    throw new InvalidDiscountException("The Discount is too high  or too low. It has to be between 1 and 25- VIPCustomer er ikke tilføjet...");
+                    throw new InvalidDiscountException("The Discount is too high  or too low. It has to be between 1 and 25 - VIPCustomer er ikke tilføjet...");
                 }
                 else
                 {
@@ -41,7 +41,7 @@ namespace PizzaLibrary1.Models
             //return $"Name:{Name}, this is a VIPCustomer!, Mobile: {Mobile}, Address: {Address}. " +
             //$"\nDiscount: {Discount} %";
 
-            return base.ToString() + $" Kunde type er VIP! Discount: {Discount} %";
+            return base.ToString() + $" Kundetype: VIP-kunde! Discount: {Discount} %";
         }
         //Skal Customer klassen være abstract?
         //Den er lidt svær, da customerklassens metoder ville blive "tomme" og skal overrides af subklasserne

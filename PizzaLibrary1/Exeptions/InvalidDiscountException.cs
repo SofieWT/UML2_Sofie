@@ -12,11 +12,5 @@ namespace PizzaLibrary1.Exeptions
         {
 
         }
-    } 
-
-        ///Denne virker kun i ConsoleMenu. Jeg er meget i tvivl om hvordan jeg
-        ///løser dette, da jeg ikke kan køre koden for program.cs uden at denne exception
-        ///er i brug. De to andre exceptions virker 
-        ///ellers fint i program.cs inden jeg lavede denne.
-    
+    }     
 }

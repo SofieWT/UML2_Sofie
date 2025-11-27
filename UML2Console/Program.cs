@@ -94,15 +94,15 @@ catch (CustomerMobileNumberExist cex)
 }
 
 Console.WriteLine();
-Console.WriteLine("Testing af TOOHighDiscountException:");
+Console.WriteLine("Testing af InvalidDiscountException:");
 
 try
 {
     VIPCustomer vip1 = new VIPCustomer("Poul", "42424242", "Gaden 21", 50);
 }
-catch (TooHighDiscountException tex)
+catch (InvalidDiscountException idex)
 {
-    Console.WriteLine($"Fejlbesked: {tex.Message}");
+    Console.WriteLine($"Fejlbesked: {idex.Message}");
 }
 
 
@@ -162,10 +162,10 @@ mRepo.AddMenuItem(new("Pollo", 40, "Pesto, tomat, rucola salat, løg, Kylling", 
 //Console.WriteLine(b1.ToString());
 
 Console.WriteLine("Testing af MenuItemNumberExist:");
-MenuItem m1 = new MenuItem("Romana", 78, "tomat, ost, skinke, bacon, løg", MenuType.PIZZECLASSSICHE);
+
 try
 {
-    mRepo.AddMenuItem(m1);
+    MenuItem m1 = new MenuItem("Romana", 78, "tomat, ost, skinke, bacon, løg", MenuType.PIZZECLASSSICHE);
 }
 catch(MenuItemNumberExist mex)
 {

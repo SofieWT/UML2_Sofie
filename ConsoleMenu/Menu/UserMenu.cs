@@ -98,7 +98,7 @@ namespace ConsoleMenu.Menu
                             string vipMobile = Console.ReadLine();
                             Console.WriteLine("Indlæs addresse:");
                             string vipAddresse = Console.ReadLine();
-                            Console.WriteLine("Indlæs mængde rabat");
+                            Console.WriteLine("Indlæs mængde rabat:");
                             string discount = Console.ReadLine().ToLower();
                             int theDiscount = int.Parse(discount);
                             AddVIPCustomerController addVIPCustomerController = new AddVIPCustomerController(vipName, vipMobile, vipAddresse, theDiscount, _customerRepository);
@@ -109,9 +109,9 @@ namespace ConsoleMenu.Menu
                             Console.WriteLine($"Fejlbesked: {cex.Message}");
                             Console.ReadLine();
                         }
-                        catch(TooHighDiscountException tex)
+                        catch(InvalidDiscountException idex)
                         {
-                            Console.WriteLine($"Fejlbesked: {tex.Message}");
+                            Console.WriteLine($"Fejlbesked: {idex.Message}");
                             Console.ReadLine();
                         }
 

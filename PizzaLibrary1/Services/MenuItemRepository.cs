@@ -25,11 +25,12 @@ namespace PizzaLibrary1.Services
 
         public void AddMenuItem(MenuItem menuItem) //Man kan også lave en ny metode, som tjekker om Navnet er i listen.
         {
-            if (GetMenuItemByNo(menuItem.No) == null)
+            if (GetMenuItemByNo(menuItem.No) != null)
             {
-                _menuItemList.Add(menuItem);               
+                throw new MenuItemNumberExist($"Der er allerede et menu item, som har nr.{menuItem.No}, prøv igen med et andet nr.");    
             }
-            throw new MenuItemNumberExist($"Der er allerede et menu item, som har nr.{menuItem.No}, prøv igen med et andet nr.");
+            
+            _menuItemList.Add(menuItem);
         }
         
 
