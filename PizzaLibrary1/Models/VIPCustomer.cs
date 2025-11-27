@@ -13,7 +13,7 @@ namespace PizzaLibrary1.Models
         private int _discount;
         public int Discount 
         {
-            get { return _discount; }//"The Discount is too high  or too low. It has to be between 1 and 25- VIPCustomer er ikke tilføjet..."
+            get { return _discount; }
             set
             {
                 if (value > 25 || value < 1)
@@ -36,15 +36,13 @@ namespace PizzaLibrary1.Models
             Discount = discount;
         }
 
-        public override string ToString() //Overvej ID
+        public override string ToString() 
         {
             //return $"Name:{Name}, this is a VIPCustomer!, Mobile: {Mobile}, Address: {Address}. " +
             //$"\nDiscount: {Discount} %";
 
             return base.ToString() + $" Kundetype: VIP-kunde! Discount: {Discount} %";
         }
-        //Skal Customer klassen være abstract?
-        //Den er lidt svær, da customerklassens metoder ville blive "tomme" og skal overrides af subklasserne
-        //Det vil sige at f.eks. toString metoden for en alm. kunne vil ikke være der.
+
     }
 }

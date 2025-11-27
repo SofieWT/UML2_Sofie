@@ -16,7 +16,6 @@ namespace PizzaLibrary1.Services
 
         public CustomerRepository()
         {
-            //_customers = new Dictionary<string, Customer>();
             _customers = MockData.CustomerData;
         }
             
@@ -64,11 +63,11 @@ namespace PizzaLibrary1.Services
 
         public void RemoveCustomer(string mobile)
         {
-            if (!_customers.ContainsKey(mobile))
+            if (_customers.ContainsKey(mobile))
             {
-                throw new CustomerMobileNumberExist($"Kunden med mobilnr {mobile} er ikke i listen... Prøv igen,");
+                _customers.Remove(mobile);
             }
-            _customers.Remove(mobile);
+            
         }
         
         public List<Customer> GetAllClubMembers() 
@@ -98,8 +97,7 @@ namespace PizzaLibrary1.Services
         }
 
 
-        //Hjælpe metode, som kan printe lister. Kan måske ende i "purefabrication klasse.
-
+        //Hjælpe metode, som kan printe lister:
         public void PrintListe(List<Customer>List)
         {
             foreach(Customer c in List)

@@ -127,7 +127,7 @@ namespace ConsoleMenu.Menu
                         string bevDescription = Console.ReadLine();
                         Console.WriteLine("Indlæs om det indeholder alkohol y/n:");
                         string alkohol = Console.ReadLine().ToLower();
-                        bool hasAlkohol = (alkohol[0] == 'y')?true:false; //Denne virker måske...
+                        bool hasAlkohol = (alkohol[0] == 'y')?true:false; 
                         Console.WriteLine("Indlæs menutypen 'BEVERAGE'");
                         string bevMenuType = Console.ReadLine();
                         MenuType theBevMenuType = Enum.Parse<MenuType>(bevMenuType);
