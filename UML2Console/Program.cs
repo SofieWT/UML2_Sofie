@@ -95,10 +95,10 @@ catch (CustomerMobileNumberExist cex)
 
 Console.WriteLine();
 Console.WriteLine("Testing af TOOHighDiscountException:");
-VIPCustomer vip1 = new VIPCustomer("Poul", "42424242", "Gaden 21", 50);
+
 try
 {
-    cRepo.AddCustomer(vip1);
+    VIPCustomer vip1 = new VIPCustomer("Poul", "42424242", "Gaden 21", 50);
 }
 catch (TooHighDiscountException tex)
 {
@@ -171,6 +171,12 @@ catch(MenuItemNumberExist mex)
 {
     Console.WriteLine($"Fejlbesked: {mex.Message}");
 }
+
+CompanyInfo com1 = CompanyInfo.Instance;
+
+CompanyInfo com2 = CompanyInfo.Instance;
+Console.WriteLine(com2.Name);
+
 
 
 

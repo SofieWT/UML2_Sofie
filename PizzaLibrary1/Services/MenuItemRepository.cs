@@ -133,7 +133,7 @@ namespace PizzaLibrary1.Services
             {                
                 if (menuType == null || m.TheMenuType != menuType.TheMenuType)
                 {
-                    Console.WriteLine($"---{m.TheMenuType}--");
+                    Console.WriteLine($"---{m.TheMenuType}---");
                     menuType = m;
                 }
                 Console.WriteLine(m.ToString());

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PizzaLibrary1.Models
 {
-    public class CompanyInfo
-    {
+	public class CompanyInfo
+	{
 		private string _cvr;
 
 		public string CVR
@@ -15,9 +15,9 @@ namespace PizzaLibrary1.Models
 			get { return _cvr; }
 			set { _cvr = value; }
 		}
-		private string _vat;
+		private int _vat;
 
-		public string VAT
+		public int VAT
 		{
 			get { return _vat; }
 			set { _vat = value; }
@@ -31,23 +31,31 @@ namespace PizzaLibrary1.Models
 			set { _name = value; }
 		}
 
-        public int ClubDiscount { get; set; }
+		//Ekstra public string Addrese { get; set; }
 
-        private CompanyInfo(string cvr, string vat, string name, int clubDiscount)
-        {
-			CVR = cvr;
-			VAT = vat;
-			Name = name;
-			ClubDiscount = clubDiscount;
-        }
-		private CompanyInfo instans = null;
+		public int ClubDiscount { get; set; }
 
-		//public static CompanyInfo GetInstans()
-		//{
-		//	if (instans==null)
-		//	{
+		private CompanyInfo() //Denne er private, da man ikke vil have at der laves flere instanser i denne.
+		{
+			
+		}
 
-		//	}
-		//}
-    }
+		private static CompanyInfo _instans = null;
+
+		public static CompanyInfo Instance
+		{
+			get 
+			{ 
+				if (_instans == null)
+				{
+					_instans = new CompanyInfo();
+				}
+				
+				return _instans; 
+			}
+		}
+			
+
+
+	}	
 }

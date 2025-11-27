@@ -13,31 +13,36 @@ namespace PizzaLibrary1.Models
         private int _discount;
         public int Discount 
         {
-            get { return _discount; }
+            get { return _discount; }//"The Discount is too high  or too low. It has to be between 1 and 25- VIPCustomer er ikke tilføjet..."
             set
             {
-                if (value>25)
+                if (value > 25 || value < 1)
                 {
-                    throw new TooHighDiscountException("The Discount is too high - VIPCustomer er ikke tilføjet...");
+                    throw new InvalidDiscountException("The Discount is too high  or too low. It has to be between 1 and 25- VIPCustomer er ikke tilføjet...");
                 }
-                _discount = value;
+                else
+                {
+                    _discount = value;
+                }
             }
         }
 
         public VIPCustomer(string name, string mobile, string address, int discount) : base(name, mobile, address)
         {
-            Name = name;
-            Mobile = mobile;
-            Address = address;
+            //if (discount > 25 || discount < 1)
+            //{
+            //    throw new InvalidDiscountException("The Discount is too high  or too low. It has to be between 1 and 25- VIPCustomer er ikke tilføjet...");
+            //}
             Discount = discount;
         }
 
         public override string ToString() //Overvej ID
         {
-            return $"Name:{Name}, this is a VIPCustomer!, Mobile: {Mobile}, Address: {Address}. " +
-                $"\nDiscount: {Discount} %";
-        }
+            //return $"Name:{Name}, this is a VIPCustomer!, Mobile: {Mobile}, Address: {Address}. " +
+            //$"\nDiscount: {Discount} %";
 
+            return base.ToString() + $" Kunde type er VIP! Discount: {Discount} %";
+        }
         //Skal Customer klassen være abstract?
         //Den er lidt svær, da customerklassens metoder ville blive "tomme" og skal overrides af subklasserne
         //Det vil sige at f.eks. toString metoden for en alm. kunne vil ikke være der.
