@@ -13,37 +13,40 @@ namespace PizzaLibrary1.Services
     public class MenuItemRepository : IMenuItemRepository
     {
         private List<MenuItem> _menuItemList;
-        public int Count { get { return _menuItemList.Count; } }
+        public int Count 
+        {
+            get { return _menuItemList.Count; } 
+        }
 
         public MenuItemRepository()
         { 
             _menuItemList = MockData.MenuItemData;
         }
 
-        public void AddMenuItem(MenuItem menuItem) 
+        public void AddMenuItem(MenuItem menuItem) //Man kan også lave en ny metode, som tjekker om Navnet er i listen.
         {
-            if (GetMenuItemByNo(menuItem.No) != null)
+            if (GetMenuItemByNo(menuItem.No) == null)
             {
-                throw new MenuItemNumberExist($"Der er allerede et menu item, som har nr.{menuItem.No}, prøv igen med et andet nr.");
+                _menuItemList.Add(menuItem);               
             }
-            _menuItemList.Add(menuItem);
+            throw new MenuItemNumberExist($"Der er allerede et menu item, som har nr.{menuItem.No}, prøv igen med et andet nr.");
         }
         
 
         public List<MenuItem> GetAll()
         {
-            List<MenuItem> returnMenu = new List<MenuItem>();
-            foreach(MenuItem m in _menuItemList)
-            {
-                returnMenu.Add(m);
-            }
-            return returnMenu;
-                        
+            //List<MenuItem> returnMenu = new List<MenuItem>();
+            //foreach(MenuItem m in _menuItemList)
+            //{
+            //    returnMenu.Add(m);
+            //}
+            //return returnMenu;
+            return _menuItemList;     
         }
         
         public MenuItem? GetMenuItemByNo(int no)
         {
-            foreach(MenuItem item in _menuItemList)
+            foreach (MenuItem item in _menuItemList)
             {
                 if (item.No == no)
                 {
@@ -51,23 +54,28 @@ namespace PizzaLibrary1.Services
                 }
             }
             return null;
+            
         }
 
         public void PrintAllMenuItems()
         {
             foreach (MenuItem m in _menuItemList)
             {
-                Console.WriteLine(m.ToString());
+                Console.WriteLine(m);
             }
         }
 
         public void RemoveMenuItem(int no)
         {
-            if (GetMenuItemByNo(no)==null)
+            //for (int i; i<_menuItemList; i++)
+            //{ 
+            //    if ()
+            //}
+            if (GetMenuItemByNo(no)!=null)
             {
-                throw new MenuItemNumberExist("Dette menu item nummer er ikke i systemet, prøv et andet");
-            }
-            _menuItemList.RemoveAt(no);
+                _menuItemList.Remove(GetMenuItemByNo(no));                
+            }            
+            throw new MenuItemNumberExist("Dette menu item nummer er ikke i listen, prøv at slettet et andet nr.");
         }
 
         public List<MenuItem> GetAllItemsInGivenMenuType(MenuType menuType) 
@@ -103,27 +111,29 @@ namespace PizzaLibrary1.Services
 
         public MenuItem? MostExpensivePizza()
         {
-            MenuItem mostExpensivePizza=null;
-            foreach(MenuItem pizza in _menuItemList)
+            MenuItem mostExpenciveMenuItem = null;
+            foreach(MenuItem m in _menuItemList)
             {
-                if (mostExpensivePizza== null||pizza.Price>mostExpensivePizza.Price)
+                if(m.TheMenuType == MenuType.PIZZECLASSSICHE || m.TheMenuType == MenuType.PIZZESPECIALI)
                 {
-                    mostExpensivePizza = pizza;
-                }
+                    if (mostExpenciveMenuItem.Price == null || mostExpenciveMenuItem.Price > m.Price)
+                    {
+                        mostExpenciveMenuItem = m;
+                    }
+                }                
             }
-            return mostExpensivePizza;
-        }
+            return mostExpenciveMenuItem;
+        }        
 
 
         public MenuItem PrintMenu(List<MenuItem> menuItems)
         {
             MenuItem menuType = null;
             foreach (MenuItem m in _menuItemList)
-            {
-                
+            {                
                 if (menuType == null || m.TheMenuType != menuType.TheMenuType)
                 {
-                    Console.WriteLine(m.TheMenuType);
+                    Console.WriteLine($"---{m.TheMenuType}--");
                     menuType = m;
                 }
                 Console.WriteLine(m.ToString());

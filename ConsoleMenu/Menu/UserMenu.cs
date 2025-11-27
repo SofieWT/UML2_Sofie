@@ -76,7 +76,7 @@ namespace ConsoleMenu.Menu
                             double itemPrice = double.Parse(price);
                             Console.WriteLine("Indlæs beskrivelse:");
                             string description = Console.ReadLine();
-                            Console.WriteLine("Indlæs menu type:");
+                            Console.WriteLine("Indlæs menu type i store bukstaver:"); //Der kan måske laves en exception, hvor fejl i stavningen catches. 
                             string menuType = Console.ReadLine();
                             MenuType theMenuType = Enum.Parse<MenuType>(menuType);//Med parse skal det skrives helt korrekt før at der ikke kommer fejlmeddelse. Programmet crasher hvis det er forkert. kan man lave en fejlmeddelse?
                             AddPizzaController addPizzaController = new AddPizzaController(itemName, itemPrice, description, theMenuType, _menuItemRepository);

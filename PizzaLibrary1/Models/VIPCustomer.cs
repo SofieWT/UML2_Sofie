@@ -20,7 +20,7 @@ namespace PizzaLibrary1.Models
                 {
                     throw new TooHighDiscountException("The Discount is too high - VIPCustomer er ikke tilføjet...");
                 }
-                _discount = Discount;
+                _discount = value;
             }
         }
 

@@ -42,12 +42,12 @@ namespace PizzaLibrary1.Models
         }
 		private CompanyInfo instans = null;
 
-		public static CompanyInfo GetInstans()
-		{
-			if (instans==null)
-			{
+		//public static CompanyInfo GetInstans()
+		//{
+		//	if (instans==null)
+		//	{
 
-			}
-		}
+		//	}
+		//}
     }
 }

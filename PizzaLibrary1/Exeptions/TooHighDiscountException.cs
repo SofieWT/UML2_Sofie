@@ -8,7 +8,11 @@ namespace PizzaLibrary1.Exeptions
 {
     public class TooHighDiscountException: Exception
     {
-        public TooHighDiscountException(string message) : base (message)
+        public TooHighDiscountException(string message) : base (message) 
+            ///Denne virker kun i ConsoleMenu. Jeg er meget i tvivl om hvordan jeg
+            ///løser dette, da jeg ikke kan køre koden for program.cs uden at denne exception
+            ///er i brug. De to andre exceptions virker 
+            ///ellers fint i program.cs inden jeg lavede denne.
         {
         }
     }

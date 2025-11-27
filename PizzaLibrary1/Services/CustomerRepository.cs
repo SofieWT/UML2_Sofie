@@ -43,13 +43,14 @@ namespace PizzaLibrary1.Services
             //return _customers.Values.ToList();
         }
 
-        public Customer? GetCustomerByMobile(string mobile)
+        public Customer GetCustomerByMobile(string mobile)
         { 
-            if (_customers.ContainsKey(mobile))
+            if (!_customers.ContainsKey(mobile))
             {
                 return _customers[mobile];
             }
             return null;
+            
         }
 
         public void PrintAllCustomers()
@@ -88,7 +89,7 @@ namespace PizzaLibrary1.Services
             List<Customer> allFromRoskilde = new List<Customer>();
             foreach (Customer c in _customers.Values)
             {
-                if (c.Address.Contains("Roskilde".ToLower())) //Dette vil finde en addresse i Roskilde, hvis Roskilde er inkluderet i addressen??
+                if (c.Address.Contains("Roskilde".ToLower())) //Dette vil finde en addresse i Roskilde, hvis Roskilde er inkluderet i addressen.
                 {
                     allFromRoskilde.Add(c);
                 }

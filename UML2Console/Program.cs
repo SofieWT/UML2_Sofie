@@ -73,11 +73,45 @@ catch (CustomerMobileNumberExist cex)
 {
     Console.WriteLine($"Fejlbesked: {cex.Message}");
 }
+Console.WriteLine();
+Console.WriteLine("Ny test");
+Customer c3 = new Customer("Mikkel", "12121212", "Street 123");
+try
+{
+    cRepo.AddCustomer(c3);
+}
+catch (CustomerMobileNumberExist cex)
+{
+    Console.WriteLine($"Fejlbesked: {cex.Message}");
+}
+try
+{
+    cRepo.RemoveCustomer("90909090");
+}
+catch (CustomerMobileNumberExist cex)
+{
+    Console.WriteLine($"Fejlbesked: {cex.Message}");
+}
+
+Console.WriteLine();
+Console.WriteLine("Testing af TOOHighDiscountException:");
+VIPCustomer vip1 = new VIPCustomer("Poul", "42424242", "Gaden 21", 50);
+try
+{
+    cRepo.AddCustomer(vip1);
+}
+catch (TooHighDiscountException tex)
+{
+    Console.WriteLine($"Fejlbesked: {tex.Message}");
+}
+
+
+
 Console.WriteLine("Testing MenuItems:");
 
 MenuItemRepository mRepo = new MenuItemRepository();
 
-Console.WriteLine("Antal Menu items i kartotektet " + mRepo.Count);
+//Console.WriteLine("Antal Menu items i kartotektet " + mRepo.Count);
 //Console.WriteLine();
 //Console.WriteLine("Test af AddMenuItem:");
 mRepo.AddMenuItem(new MenuItem("Gorgonzola", 85, "Tomat, gorgonzola, løg & Svampe", MenuType.PIZZECLASSSICHE));
@@ -122,10 +156,10 @@ mRepo.AddMenuItem(new("Pollo", 40, "Pesto, tomat, rucola salat, løg, Kylling", 
 //Console.WriteLine("Testing PrintMenu");
 //mRepo.PrintMenu(mRepo.GetAll());
 
-Console.WriteLine("Testing Beverage:");
+//Console.WriteLine("Testing Beverage:");
 
-Beverage b1 = new Beverage("Bottle of Red Wine", 85, "This id red wine", MenuType.BEVERAGE, true);
-Console.WriteLine(b1.ToString());
+//Beverage b1 = new Beverage("Bottle of Red Wine", 85, "This id red wine", MenuType.BEVERAGE, true);
+//Console.WriteLine(b1.ToString());
 
 Console.WriteLine("Testing af MenuItemNumberExist:");
 MenuItem m1 = new MenuItem("Romana", 78, "tomat, ost, skinke, bacon, løg", MenuType.PIZZECLASSSICHE);
@@ -138,14 +172,8 @@ catch(MenuItemNumberExist mex)
     Console.WriteLine($"Fejlbesked: {mex.Message}");
 }
 
-try
-{
-    mRepo.RemoveMenuItem(42);
-}
-catch (MenuItemNumberExist mex)
-{
-    Console.WriteLine($"Fejlbesked: {mex.Message}");
-}
+
+
 
 
 
